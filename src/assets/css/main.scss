@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playwrite+CU:wght@100..400&display=swap");
+
+:root {
+  --main-color: #3c13e696;
+  --soft-white: rgba(255, 255, 255, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.page section {
+  border-radius: 10px;
+
+  background-color: var(--soft-white);
+  border: 2px solid var(--soft-white);
+
+  margin-bottom: 2em;
+  padding: 1em 2em;
+}
+
+.page {
+  padding: 2em;
+  overflow: auto;
+
+  height: 100dvh;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-2 {
+  margin-bottom: 2em;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add {
+  color: white;
+  font-family: inherit;
+  border: none;
+  display: inline-flex;
+  gap: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  background: var(--main-color);
+  padding: 0.5em 1em;
+}
+
+.align-start {
+  align-items: start;
+}
+
+.input-field {
+  margin-bottom: 1em;
+}

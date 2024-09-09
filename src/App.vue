@@ -1,26 +1,40 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup>
+import { useHead } from "@vueuse/head";
+import NavBar from "@/components/layout/NavBar.vue";
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+useHead({
+  link: [
+    {
+      rel: "stylesheet",
+      href: "https://kit-pro.fontawesome.com/releases/v6.6.0/css/pro.min.css",
+    },
+  ],
+});
 </script>
 
-<style>
+
+<template>
+  <div id="app">
+    <NavBar></NavBar>
+
+    <main class="content page">
+      <router-view />
+    </main>
+  </div>
+</template>
+
+<style lang="scss" scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  background: #071d4b;
+  color: white;
+  overflow: hidden;
+  height: 100dvh;
+  width: 100%;
+  align-items: stretch;
+
+  .content {
+    flex: 1;
+  }
 }
 </style>
