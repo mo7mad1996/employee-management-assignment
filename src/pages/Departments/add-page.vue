@@ -4,6 +4,7 @@ import { ref } from "vue";
 import api from "@/services/api";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import { useHead } from "@vueuse/head";
 
 // Get toast interface
 const toast = useToast();
@@ -25,6 +26,8 @@ const addDepartment = async () => {
 const showError = (e) => {
   toast.error(e);
 };
+
+useHead({ title: "add a new Department" });
 </script>
   
 <template>

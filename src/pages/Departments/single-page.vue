@@ -7,6 +7,7 @@ import { useToast } from "vue-toastification";
 
 // components
 import AddMember from "@/components/Department/AddMember";
+import { useHead } from "@vueuse/head";
 
 // config
 const router = useRoute();
@@ -36,6 +37,8 @@ const getEmployees = async () => {
 };
 
 onMounted(getDepartment);
+
+useHead({ title: "Single Department" });
 </script>
 
 
@@ -55,7 +58,10 @@ onMounted(getDepartment);
       <section>
         <div class="flex">
           <h3>Members</h3>
-          <button class="add" @click="is_form_open = true">Add a member</button>
+          <button class="add" @click="is_form_open = true">
+            <i class="fa-regular fa-sliders"></i>
+            Edit members
+          </button>
         </div>
         <ul class="employees" v-if="employees.length">
           <li v-for="employee in employees" :key="employee.id">
@@ -80,6 +86,10 @@ onMounted(getDepartment);
 
 
 <style lang=scss scoped>
+section h1 {
+  font-family: "Playwrite CU", cursive;
+}
+
 .sub {
   color: #bababa;
   margin-top: 1em;

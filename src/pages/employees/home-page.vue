@@ -5,6 +5,7 @@ import { onMounted, ref } from "vue";
 
 // components
 import ButtonsUsers from "@/components/employees/ButtonsUsers";
+import { useHead } from "@vueuse/head";
 
 const employees = ref([]);
 
@@ -15,37 +16,37 @@ const getEmployees = () => {
 
 // LCH
 onMounted(() => getEmployees());
+
+useHead({ title: "Employees" });
 </script>
 <template>
   <section><h1>Employees page</h1></section>
 
-  <header class="flex mb-2">
-    <h3>Employees</h3>
-    <router-link to="/employees/add" class="add">Add an employee</router-link>
-  </header>
+  <div class="cover" v-if="employees.length">
+    <header class="flex mb-2">
+      <h3>Employees</h3>
+      <router-link to="/employees/add" class="add">Add an employee</router-link>
+    </header>
 
-  <table v-if="employees.length">
-    <thead>
-      <tr class="skip_me">
-        <th>name</th>
-        <th>birth of date</th>
-        <th>salary</th>
-        <th>Joined in</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="u in employees" :key="u.id">
-        <td>{{ u.name }}</td>
-        <td>{{ format(u.birthDate) }}</td>
-        <td>{{ u.salary }}</td>
-        <td>{{ format(u.dateOfJoining) }}</td>
-        <td>
+    <ul>
+      <li v-for="u in employees" :key="u.id">
+        <div class="icon">
+          <i class="fa-regular fa-user-tie"></i>
+          <!-- <i class="fa-light fa-user-tie"></i> -->
+        </div>
+
+        <div class="info">
+          <h5>{{ u.name }}</h5>
+          <span>{{ format(u.birthDate) }}</span>
+        </div>
+
+        <div class="buttons">
           <ButtonsUsers :id="u.id" @update="getEmployees" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </li>
+    </ul>
+  </div>
+
   <div v-else class="text-center">
     <h1 class="mb-2">No data here try to add one.</h1>
     <router-link to="/employees/add" class="add">Add an employee</router-link>
@@ -53,32 +54,60 @@ onMounted(() => getEmployees());
 </template>
 
 <style lang="scss" scoped>
-table {
-  display: table;
-  width: 100%;
-  //   border-radius: 10px;
-  //   border: 1px solid #f6f6f6;
+.cover {
+  background: white;
+  padding: 1em 0.2em;
+  box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px,
+    rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px,
+    rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px,
+    rgba(42, 51, 70, 0.04) 0px 6px 6px -3px,
+    rgba(14, 63, 126, 0.04) 0px 12px 12px -6px,
+    rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+}
+header {
+  padding: 1em;
+  border-radius: 10px;
+}
+li {
+  list-style: none;
+  display: flex;
+  border-radius: 10px;
+  gap: 1em;
+  margin-top: 0.3em;
+  // box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+  //   rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  padding: 1em;
 
-  thead {
-    background: #f5f7f9;
-    color: #596472;
+  .container {
+    width: 90%;
+    border-bottom: 1px solid #b4afaf;
   }
 
-  th,
-  td {
-    border: none;
-    padding: 0.3em 1em;
-    text-align: start;
+  .icon {
+    font-size: 20px;
   }
 
-  tr:not(.skip_me) {
-    color: var(--soft-white);
-    border-bottom: 1px solid #f6f6f6;
+  &:hover {
+    // filter: brightness(70%);
+    background: #6c6c6c1b;
+  }
 
-    &:hover {
-      color: white;
-      background: #0002;
+  .info {
+    flex: 1;
+
+    span {
+      color: #c3c3c3;
+      font-size: 14px;
     }
+  }
+
+  .buttons {
+    opacity: 0;
+  }
+
+  &:hover .buttons {
+    transition: 0.3s;
+    opacity: 1;
   }
 }
 </style>

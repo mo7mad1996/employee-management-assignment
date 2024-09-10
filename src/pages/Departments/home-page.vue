@@ -4,6 +4,7 @@ import api from "@/services/api";
 
 // components
 import DepartmentItem from "@/components/Department/Item-card.vue";
+import { useHead } from "@vueuse/head";
 
 // data
 const departments = ref([]);
@@ -30,16 +31,18 @@ const remove = (id) => {
 onMounted(() => {
   getDepartments();
 });
+
+useHead({ title: "Departments" });
 </script>
 
 <template>
   <section>
-    <h3>Departments Page</h3>
+    <h1>Departments Page</h1>
   </section>
 
   <section>
     <header class="flex mb-2">
-      <h2>Departments</h2>
+      <h3>Departments</h3>
       <router-link class="add" to="/departments/add">Add new One</router-link>
     </header>
 

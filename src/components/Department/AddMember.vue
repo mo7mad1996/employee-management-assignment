@@ -49,7 +49,10 @@ onMounted(getEmployees);
 </script>
 
 <template>
-  <h2>Edit Members</h2>
+  <h2>
+    <i class="fa-duotone fa-solid fa-sliders"></i>
+    Edit Members
+  </h2>
 
   <hr />
   <main class="employees">

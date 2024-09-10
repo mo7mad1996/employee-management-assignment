@@ -40,21 +40,32 @@ const remove = () => {
 <style lang="scss" scoped>
 .flex {
   justify-content: space-around;
+  gap: 0.3em;
 }
 button {
-  font-size: 18px;
   cursor: pointer;
+  font-size: 20px;
   background: none;
   color: inherit;
-  border: 0;
+  border: 1px solid transparent;
+  padding: 0.3em;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+  display: grid;
+
+  color: rgb(var(--main-color));
+
+  &:hover,
+  &:focus {
+    background: rgba(var(--main-color), 0.2);
+    // border-color: rgb(var(--main-color));
+  }
 }
 
-.remove:focus,
-.remove:hover {
-  color: rgb(154, 37, 37);
+.edit {
+  --main-color: 184, 186, 17;
 }
-.edit:focus,
-.edit:hover {
-  color: rgb(154, 146, 37);
+.remove {
+  --main-color: 254, 37, 37;
 }
 </style>

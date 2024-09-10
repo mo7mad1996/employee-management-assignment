@@ -1,6 +1,7 @@
 <script setup>
 import api from "@/services/api";
 import format from "@/services/format";
+import { useHead } from "@vueuse/head";
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
@@ -28,6 +29,8 @@ const editDepartment = () => {
     })
     .catch(() => toast.error("there is an error, So please try again later"));
 };
+
+useHead({ title: `Edit a department ` });
 </script>
 
 <template>

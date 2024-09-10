@@ -79,8 +79,10 @@ const closeMenu = (event) => {
   padding: 1em;
   border-radius: 10px;
   border: 1px solid var(--soft-white);
-  color: #d1cbcb;
+  color: var(--main-color);
   width: 220px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   transition: 0.2s;
 
   &:hover {
@@ -94,6 +96,10 @@ const closeMenu = (event) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    span {
+      font-size: 0.8em;
+    }
   }
   footer,
   header {
@@ -120,25 +126,30 @@ const closeMenu = (event) => {
 
 .buttons {
   position: absolute;
-  top: 2em;
+  top: 25px;
   right: 0;
-  padding: 5px;
   background: white;
-  color: black;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  color: rgb(69, 69, 69);
 
   > div {
+    padding: 0.3em 1em;
     place-content: center;
     text-align: end;
     cursor: pointer;
     text-transform: capitalize;
+    background: inherit;
 
     &:hover {
       color: var(--color);
+      filter: brightness(80%);
     }
 
     i {
       width: 1em;
-      margin: 0 10px;
+      display: inline-grid;
+      // margin: 0 10px;
     }
   }
 

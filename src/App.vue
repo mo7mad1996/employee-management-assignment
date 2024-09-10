@@ -26,8 +26,8 @@ useHead({
 <style lang="scss" scoped>
 #app {
   display: flex;
-  background: #071d4b;
-  color: white;
+  color: #071d4b;
+  background: #edeff1;
   overflow: hidden;
   height: 100dvh;
   width: 100%;

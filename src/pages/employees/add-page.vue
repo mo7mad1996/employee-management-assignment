@@ -1,5 +1,6 @@
 <script setup>
 import api from "@/services/api";
+import { useHead } from "@vueuse/head";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
@@ -23,6 +24,7 @@ const add = () => {
     })
     .catch(() => toast.error("Please fill all data "));
 };
+useHead({ title: "Employees" });
 </script>
 <template>
   <section><h1>Let's create a new Employee</h1></section>

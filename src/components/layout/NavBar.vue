@@ -66,11 +66,12 @@ aside {
       padding: 0.6em 1em;
 
       &:hover,
-      &.active {
-        color: white;
+      &:focus {
+        color: rgb(94, 92, 92);
       }
       &.active {
         background: var(--main-color);
+        color: white;
         border-radius: 10px;
       }
 
