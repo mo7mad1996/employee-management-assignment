@@ -14,27 +14,41 @@ useHead({
 
 
 <template>
-  <div id="app">
-    <NavBar></NavBar>
+  <NavBar />
 
-    <main class="content page">
-      <router-view />
-    </main>
-  </div>
+  <main class="content page">
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade" mode="out-in">
+        <div :key="route.path" class="transition">
+          <component :is="Component" />
+        </div>
+      </transition>
+    </router-view>
+
+    <!-- without router animation -->
+    <!-- <router-view></router-view> -->
+  </main>
 </template>
 
 <style lang="scss" scoped>
-#app {
-  display: flex;
-  color: #071d4b;
-  background: #edeff1;
+.content {
   overflow: hidden;
-  height: 100dvh;
-  width: 100%;
-  align-items: stretch;
+  flex: 1;
+}
 
-  .content {
-    flex: 1;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.4s ease;
+  transform: scale(1, 1);
+  opacity: 1;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(1.05, 1.05);
+}
+.fade-enter-from {
+  transform: scale(0.97, 0.96);
 }
 </style>

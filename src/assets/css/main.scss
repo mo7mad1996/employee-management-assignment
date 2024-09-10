@@ -15,6 +15,16 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+#app {
+  display: flex;
+  color: #071d4b;
+  background: #edeff1;
+  overflow: hidden;
+  height: 100dvh;
+  width: 100%;
+  align-items: stretch;
+}
+
 .page section {
   border-radius: 10px;
 

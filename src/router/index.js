@@ -9,7 +9,15 @@ import EmployeesPage from "@/pages/employees/home-page.vue";
 import EmployeesAddPage from "@/pages/employees/add-page.vue";
 
 const routes = [
-  { path: "/departments", component: DepartmentsPage },
+  { path: "/", redirect: "/departments" },
+  {
+    path: "/departments",
+    component: DepartmentsPage,
+    // children: [
+    //   { path: "/add", component: DepartmentsAddPage },
+    //   { path: ":id", component: DepartmentPage },
+    // ],
+  },
   { path: "/departments/add", component: DepartmentsAddPage },
   { path: "/departments/:id", component: DepartmentPage },
   { path: "/departments/:id/edit", component: DepartmentEditPage },
@@ -18,6 +26,7 @@ const routes = [
 ];
 
 const router = createRouter({
+  linkActiveClass: "active",
   history: createWebHistory(),
   routes,
 });
