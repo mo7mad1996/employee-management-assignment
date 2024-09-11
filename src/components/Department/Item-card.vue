@@ -37,7 +37,12 @@ const closeMenu = (event) => {
 </script>
 <template>
   <div
-    @click="router.push(`/departments/${props.department.id}`)"
+    @click="
+      router.push({
+        name: 'single_department',
+        params: props.department,
+      })
+    "
     class="department"
   >
     <header>

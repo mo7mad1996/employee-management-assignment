@@ -1,10 +1,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import api from "@/services/api";
+import { useHead } from "@vueuse/head";
 
 // components
 import DepartmentItem from "@/components/Department/Item-card.vue";
-import { useHead } from "@vueuse/head";
 
 // data
 const departments = ref([]);

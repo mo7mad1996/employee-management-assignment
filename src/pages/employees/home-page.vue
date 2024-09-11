@@ -6,6 +6,9 @@ import { onMounted, ref } from "vue";
 // components
 import ButtonsUsers from "@/components/employees/ButtonsUsers";
 import { useHead } from "@vueuse/head";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const employees = ref([]);
 
@@ -29,10 +32,13 @@ useHead({ title: "Employees" });
     </header>
 
     <ul>
-      <li v-for="u in employees" :key="u.id">
+      <li
+        v-for="u in employees"
+        :key="u.id"
+        @click="router.push({ params: { id: u.id }, name: 'single_employee' })"
+      >
         <div class="icon">
           <i class="fa-regular fa-user-tie"></i>
-          <!-- <i class="fa-light fa-user-tie"></i> -->
         </div>
 
         <div class="info">

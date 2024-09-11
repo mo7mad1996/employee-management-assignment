@@ -2,7 +2,7 @@
 import api from "@/services/api";
 import format from "@/services/format";
 import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
 // components
@@ -10,13 +10,14 @@ import AddMember from "@/components/Department/AddMember";
 import { useHead } from "@vueuse/head";
 
 // config
-const router = useRoute();
+const route = useRoute();
+const router = useRouter();
 const toast = useToast();
 
 // data
 const department = ref();
 const employees = ref([]);
-const id = router.params.id;
+const id = route.params.id;
 const is_form_open = ref(false);
 
 // methods
@@ -64,9 +65,22 @@ useHead({ title: "Single Department" });
           </button>
         </div>
         <ul class="employees" v-if="employees.length">
-          <li v-for="employee in employees" :key="employee.id">
-            <i class="fa-duotone fa-solid fa-ghost"></i>
-            {{ employee.name }}
+          <li
+            v-for="(employee, n) in employees"
+            :key="employee.id"
+            @click="
+              router.push({
+                name: 'single_employee',
+                params: { id: employee.id },
+              })
+            "
+          >
+            <!-- <i class="fa-duotone fa-solid fa-ghost"></i> -->
+            <span class="index">{{ n + 1 }}</span>
+            <div>
+              <h3>{{ employee.name }}</h3>
+              <div class="sub">{{ employee.id }}</div>
+            </div>
           </li>
         </ul>
 
@@ -99,9 +113,34 @@ section h1 {
 
   li {
     display: flex;
-    align-items: baseline;
-    gap: 0.4em;
+    align-items: center;
+    gap: 1em;
     padding: 0.4em;
+    border: 1px solid #e9e8e8;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-block: 1em;
+
+    &:hover {
+      background: #f8f8f8;
+    }
+
+    .index {
+      font-size: 30px;
+      color: tomato;
+      display: grid;
+      place-items: center;
+      padding: 0 0.3em;
+      aspect-ratio: 1/1;
+      border-inline-end: 1px solid #e9e8e8;
+    }
+    h3 {
+      color: var(--main-color);
+    }
+    .sub {
+      font-size: 15px;
+      margin: 0;
+    }
   }
 }
 .flex {

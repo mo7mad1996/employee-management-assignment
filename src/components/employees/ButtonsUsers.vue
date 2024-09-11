@@ -27,7 +27,7 @@ const remove = () => {
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex" @click.stop>
     <button class="edit" @click="edit">
       <i class="fa-regular fa-pen-to-square"></i>
     </button>

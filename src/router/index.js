@@ -7,22 +7,27 @@ import DepartmentPage from "@/pages/Departments/single-page.vue";
 import DepartmentEditPage from "@/pages/Departments/edit-page.vue";
 import EmployeesPage from "@/pages/employees/home-page.vue";
 import EmployeesAddPage from "@/pages/employees/add-page.vue";
+import EmployeesSinglePage from "@/pages/employees/single-page.vue";
 
 const routes = [
   { path: "/", redirect: "/departments" },
   {
     path: "/departments",
-    component: DepartmentsPage,
-    // children: [
-    //   { path: "/add", component: DepartmentsAddPage },
-    //   { path: ":id", component: DepartmentPage },
-    // ],
+    children: [
+      { path: "", component: DepartmentsPage },
+      { path: "add", component: DepartmentsAddPage },
+      { path: ":id", component: DepartmentPage, name: "single_department" },
+      { path: ":id/edit", component: DepartmentEditPage },
+    ],
   },
-  { path: "/departments/add", component: DepartmentsAddPage },
-  { path: "/departments/:id", component: DepartmentPage },
-  { path: "/departments/:id/edit", component: DepartmentEditPage },
-  { path: "/employees", component: EmployeesPage },
-  { path: "/employees/add", component: EmployeesAddPage },
+  {
+    path: "/employees",
+    children: [
+      { path: "", component: EmployeesPage },
+      { path: "add", component: EmployeesAddPage },
+      { path: ":id", component: EmployeesSinglePage, name: "single_employee" },
+    ],
+  },
 ];
 
 const router = createRouter({
